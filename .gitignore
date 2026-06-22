@@ -3,5 +3,23 @@ dist/
 .astro/
 .DS_Store
 public/images/
-vault/.obsidian/workspace.json
-vault/.obsidian/workspace-mobile.json
+
+# The public repository only tracks publishable Vault areas.
+vault/*
+!vault/.obsidian/
+!vault/assets/
+!vault/drafts/
+!vault/inbox/
+!vault/published/
+!vault/templates/
+
+# Keep only portable Obsidian settings; never upload plugin data or workspaces.
+vault/.obsidian/*
+!vault/.obsidian/app.json
+!vault/.obsidian/templates.json
+
+# Inbox and drafts are private by default.
+vault/inbox/*
+!vault/inbox/从这里开始.md
+vault/drafts/*
+!vault/drafts/.gitkeep

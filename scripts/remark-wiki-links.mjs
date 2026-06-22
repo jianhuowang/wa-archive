@@ -42,7 +42,7 @@ export function wikiLinkNodes(value, { base = '/' } = {}) {
       const label = alias || heading || note.split('/').pop() || note;
       nodes.push({
         type: 'link',
-        url: note ? `${base}blog/${encodePath(note)}/${hash}` : hash || '#',
+        url: note ? `${base}blog/${encodePath(note.toLowerCase())}/${hash}` : hash || '#',
         title: null,
         data: { hProperties: { className: ['wiki-link'] } },
         children: [{ type: 'text', value: label }],

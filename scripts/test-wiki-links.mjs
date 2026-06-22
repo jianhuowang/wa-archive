@@ -10,6 +10,9 @@ assert.equal(nodes[3].url, '/wa-archive/blog/linear-algebra-rank/#三种视角')
 const localHeading = wikiLinkNodes('[[#易错点]]')[0];
 assert.equal(localHeading.url, '#易错点');
 
+const mixedCase = wikiLinkNodes('[[GCD的合并性质]]')[0];
+assert.equal(mixedCase.url, '/blog/gcd%E7%9A%84%E5%90%88%E5%B9%B6%E6%80%A7%E8%B4%A8/');
+
 const image = wikiLinkNodes('![[diagrams/union-find.png|并查集示意图]]', { base: '/' })[0];
 assert.equal(image.type, 'image');
 assert.equal(image.url, '/images/diagrams/union-find.png');

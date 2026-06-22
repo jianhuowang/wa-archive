@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import { unified } from '@astrojs/markdown-remark';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 import { remarkWikiLinks } from './scripts/remark-wiki-links.mjs';
 
 const repository = process.env.GITHUB_REPOSITORY;
@@ -14,7 +16,10 @@ export default defineConfig({
   base,
   output: 'static',
   markdown: {
-    processor: unified({ remarkPlugins: [[remarkWikiLinks, { base }]] }),
+    processor: unified({
+      remarkPlugins: [remarkMath, [remarkWikiLinks, { base }]],
+      rehypePlugins: [rehypeKatex],
+    }),
     shikiConfig: {
       themes: { light: 'github-light', dark: 'github-dark' },
       wrap: true,
