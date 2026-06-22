@@ -4,13 +4,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev --no-telemetry",
-    "build": "astro build --no-telemetry",
-    "preview": "astro preview --no-telemetry",
+    "prepare:content": "node scripts/prepare-content.mjs",
+    "dev": "npm run prepare:content && cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "npm run prepare:content && cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "test:wiki": "node scripts/test-wiki-links.mjs",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.3",
-    "astro": "^6.4.8"
+    "astro": "^6.4.8",
+    "github-slugger": "^2.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }

@@ -1,0 +1,8 @@
+{
+  "attachmentFolderPath": "assets",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "inbox",
+  "useMarkdownLinks": false,
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": true
+}

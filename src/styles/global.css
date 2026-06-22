@@ -93,6 +93,7 @@ h1 { font-size: clamp(2.7rem, 8vw, 5.8rem); margin: .4rem 0 1.2rem; }
 .prose h2 { margin-top: 2.5rem; font-size: 1.7rem; }
 .prose h3 { margin-top: 2rem; }
 .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.prose a.wiki-link::before { content: '↗'; margin-right: .22em; font-size: .78em; text-decoration: none; display: inline-block; }
 .prose blockquote { border-left: 3px solid var(--accent); margin-left: 0; padding: .2rem 1rem; color: var(--muted); }
 .prose img { max-width: 100%; border-radius: 12px; }
 .prose code:not(pre code) { background: var(--accent-soft); color: var(--accent); padding: .15em .38em; border-radius: 5px; }
