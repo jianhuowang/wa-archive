@@ -41,6 +41,26 @@ npm.cmd run dev
 
 打开终端显示的地址，通常是 `http://localhost:4321`。运行 `npm.cmd run build` 可以在发布前检查全部内容。
 
+## 图形化发布器
+
+最简单的启动方式是直接双击项目根目录的 **`启动发布器.bat`**。
+
+也可以在项目目录打开 PowerShell，运行：
+
+```powershell
+npm.cmd run publisher
+```
+
+浏览器会自动打开 **WA Publisher**。它会读取 Claudian 笔记，提供文章属性表单、Markdown/KaTeX/Wiki Links 预览与关联笔记确认。点击最终发布后，它会自动：
+
+1. 创建或更新 `vault/published` 中的公开副本；
+2. 检查 frontmatter、附件和 Wiki 死链；
+3. 完整构建网站；
+4. 只提交本次公开文件；
+5. 推送 GitHub，触发 Pages 更新。
+
+发布器只监听 `127.0.0.1`，并使用每次启动随机生成的请求令牌。Claudian 配置、Inbox 和 Drafts 不会进入公开提交。
+
 ## 发布
 
 1. 将写好的笔记移入 `vault/published`；
