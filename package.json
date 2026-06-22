@@ -1,0 +1,16 @@
+{
+  "name": "wa-archive",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev --no-telemetry",
+    "build": "astro build --no-telemetry",
+    "preview": "astro preview --no-telemetry",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^6.0.3",
+    "astro": "^6.4.8"
+  }
+}

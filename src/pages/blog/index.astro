@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="文章">
+  <header class="page-head container"><div class="eyebrow">All entries</div><h1>文章 / Posts</h1><p>算法、课程与项目在这里汇流。先写下来，再慢慢变聪明。</p></header>
+  <section class="post-list container">{posts.map((post) => <PostCard post={post} compact />)}</section>
+</BaseLayout>

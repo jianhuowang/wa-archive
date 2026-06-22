@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+
+interface Props { title?: string; description?: string; }
+const { title, description = 'WHJ 的算法、课程与项目学习档案馆。' } = Astro.props;
+const pageTitle = title ? `${title} · WA Archive` : 'WA Archive · WHJ';
+const base = import.meta.env.BASE_URL;
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <title>{pageTitle}</title>
+    <script is:inline>
+      const saved = localStorage.getItem('wa-theme');
+      const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = saved || preferred;
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav container" aria-label="主导航">
+        <a class="brand" href={base}>WA <span>Archive</span></a>
+        <div class="nav-links">
+          <a href={`${base}blog/`}>文章 / Posts</a>
+          <a href={`${base}tags/`}>标签 / Tags</a>
+          <a href={`${base}about/`}>关于 / About</a>
+        </div>
+        <button class="theme-toggle" type="button" aria-label="切换深色模式" title="切换主题">◐</button>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer class="site-footer">
+      <div class="container">© {new Date().getFullYear()} WHJ · Built with Astro · Keep the wrong answers.</div>
+    </footer>
+    <script>
+      const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+      button?.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('wa-theme', next);
+      });
+    </script>
+  </body>
+</html>

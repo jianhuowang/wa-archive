@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout>
+  <section class="hero container">
+    <div class="eyebrow">WHJ's Learning Archive</div>
+    <h1>Keep the<br />wrong answers.</h1>
+    <p>收留坏题、坏代码，也保存每一次想明白的瞬间。这里是我的 ACM 题解、课程笔记、项目日志与偶尔的情绪复盘。</p>
+    <div class="hero-actions">
+      <a class="button primary" href={`${base}blog/`}>进入档案馆</a>
+      <a class="button" href={`${base}about/`}>About WHJ</a>
+    </div>
+  </section>
+  <section class="section container">
+    <div class="section-head"><h2>最近归档 / Latest</h2><a href={`${base}blog/`}>查看全部 →</a></div>
+    <div class="post-grid">{posts.slice(0, 3).map((post) => <PostCard post={post} />)}</div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const counts = new Map<string, number>();
+posts.forEach(({ data }) => data.tags.forEach((tag) => counts.set(tag, (counts.get(tag) ?? 0) + 1)));
+const tags = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+---
+<BaseLayout title="标签">
+  <header class="page-head container"><div class="eyebrow">Browse by topic</div><h1>标签 / Tags</h1><p>沿着知识点翻找归档。</p></header>
+  <section class="container section"><div class="tag-list">{tags.map(([tag, count]) => <a class="tag" style="font-size: 1rem; padding: .55rem .9rem" href={`${import.meta.env.BASE_URL}tags/${encodeURIComponent(tag)}/`}>#{tag} · {count}</a>)}</div></section>
+</BaseLayout>
